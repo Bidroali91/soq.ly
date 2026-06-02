@@ -1,0 +1,60 @@
+{
+  "subscriptions": [
+    {
+      "id": "sub_1001",
+      "customerName": "شركة النور",
+      "serviceId": "KIT-STAR-1001",
+      "email": "billing@example.com",
+      "phone": "0910000001",
+      "dueDate": "2026-06-05",
+      "amount": 450,
+      "currency": "LYD",
+      "paymentStatus": "unpaid",
+      "subscriptionStatus": "active",
+      "lastPaidAt": "",
+      "notes": "مثال قابل للتعديل.",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "updatedAt": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "id": "sub_1002",
+      "customerName": "منزل أحمد",
+      "serviceId": "KIT-STAR-1002",
+      "email": "ahmed@example.com",
+      "phone": "0920000002",
+      "dueDate": "2026-05-28",
+      "amount": 450,
+      "currency": "LYD",
+      "paymentStatus": "unpaid",
+      "subscriptionStatus": "active",
+      "lastPaidAt": "",
+      "notes": "متأخر ويحتاج متابعة.",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "updatedAt": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "id": "sub_1003",
+      "customerName": "مكتب طرابلس",
+      "serviceId": "KIT-STAR-1003",
+      "email": "office@example.com",
+      "phone": "0930000003",
+      "dueDate": "2026-06-18",
+      "amount": 450,
+      "currency": "LYD",
+      "paymentStatus": "paid",
+      "subscriptionStatus": "active",
+      "lastPaidAt": "2026-06-01",
+      "notes": "تم الدفع نقداً.",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "updatedAt": "2026-06-01T00:00:00.000Z"
+    }
+  ],
+  "activities": [
+    {
+      "id": "act_1001",
+      "type": "system",
+      "text": "تم تجهيز بيانات تجريبية. احذفها أو عدلها حسب اشتراكاتك.",
+      "createdAt": "2026-06-01T00:00:00.000Z"
+    }
+  ]
+}

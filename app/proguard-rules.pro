@@ -1,0 +1,2 @@
+-keepattributes JavascriptInterface
+-keep class com.sasaida.app.AndroidBridge { *; }

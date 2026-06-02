@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B1020" />
+    <title>اشتراكات ستارلينك</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="التنقل الرئيسي">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="34" height="34">
+              <circle cx="24" cy="24" r="22" fill="#0B1020"/>
+              <path d="M24 18 A10 10 0 0 1 34 28" stroke="#22D3EE" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M24 18 A14 14 0 0 1 38 32" stroke="#67E8F9" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".7"/>
+              <path d="M10 30 Q24 18 38 30 L34 34 Q24 26 14 34 Z" fill="#F8FAFC"/>
+              <circle cx="24" cy="24" r="2" fill="#22D3EE"/>
+            </svg>
+          </div>
+          <div>
+            <strong>اشتراكات ستارلينك</strong>
+            <span>متابعة الزبائن والدفع الشهري</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <a class="nav-item active" href="#dashboard">لوحة المتابعة</a>
+          <a class="nav-item" href="#subscriptions">الاشتراكات</a>
+          <a class="nav-item" href="#emailImport">استيراد الإيميل</a>
+          <a class="nav-item" href="#payments">سجل الدفع</a>
+          <a class="nav-item" href="#settings">الإعدادات</a>
+        </nav>
+
+        <section class="side-note">
+          <strong>نصيحة سريعة</strong>
+          <span>اضغط مطوّلاً على رقم الزبون لفتحه في واتساب أو الرسائل أو الاتصال. كل البيانات محفوظة على جهازك.</span>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">إدارة اشتراكات ستارلينك من مكان واحد</p>
+            <h1>لوحة التحصيل الشهري</h1>
+          </div>
+          <div class="top-actions">
+            <button class="ghost-button" type="button" id="themeToggleButton" title="تبديل الوضع">🌙 الوضع</button>
+            <button class="ghost-button" type="button" id="exportCsvButton">تصدير CSV</button>
+            <button class="ghost-button" type="button" id="backupButton" title="نسخة احتياطية كاملة">نسخة احتياطية</button>
+            <button class="ghost-button" type="button" id="restoreButton" title="استعادة من ملف">استعادة</button>
+            <input type="file" id="restoreInput" accept="application/json" hidden />
+            <button class="primary-button" type="button" id="openAddFormButton">+ اشتراك جديد</button>
+          </div>
+        </header>
+
+        <section class="stats-grid" id="dashboard" aria-label="ملخص الاشتراكات">
+          <article class="stat-card danger">
+            <span>متأخر</span>
+            <strong id="overdueCount">0</strong>
+            <small id="overdueAmount">0 د.ل</small>
+          </article>
+          <article class="stat-card warning">
+            <span>مستحق خلال 7 أيام</span>
+            <strong id="dueSoonCount">0</strong>
+            <small id="dueSoonAmount">0 د.ل</small>
+          </article>
+          <article class="stat-card success">
+            <span>مدفوع هذا الشهر</span>
+            <strong id="paidCount">0</strong>
+            <small id="paidAmount">0 د.ل</small>
+          </article>
+          <article class="stat-card info">
+            <span>متوقع هذا الشهر</span>
+            <strong id="expectedCount">0</strong>
+            <small id="expectedAmount">0 د.ل</small>
+          </article>
+          <article class="stat-card">
+            <span>إجمالي الاشتراكات</span>
+            <strong id="totalCount">0</strong>
+            <small id="activeCount">0 نشط</small>
+          </article>
+        </section>
+
+        <section class="panel chart-panel" aria-label="إيرادات آخر 6 أشهر">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">تحليلات</p>
+              <h2>إيرادات آخر 6 أشهر</h2>
+            </div>
+            <span class="result-count" id="chartTotal">0 د.ل</span>
+          </div>
+          <div class="chart" id="revenueChart" role="img" aria-label="مخطط الإيرادات الشهرية"></div>
+        </section>
+
+        <section class="toolbar panel" aria-label="أدوات البحث والتصفية">
+          <label class="search-box">
+            <span>بحث</span>
+            <input id="searchInput" type="search" placeholder="اسم الزبون، رقم الخدمة، أو الإيميل" />
+          </label>
+          <label>
+            <span>الحالة</span>
+            <select id="statusFilter">
+              <option value="all">كل الحالات</option>
+              <option value="overdue">متأخر</option>
+              <option value="due-soon">مستحق قريباً</option>
+              <option value="unpaid">غير مدفوع</option>
+              <option value="paid">مدفوع</option>
+              <option value="inactive">متوقف</option>
+            </select>
+          </label>
+          <label>
+            <span>ترتيب</span>
+            <select id="sortSelect">
+              <option value="dueDate">الأقرب استحقاقاً</option>
+              <option value="customerName">اسم الزبون</option>
+              <option value="amount">المبلغ</option>
+              <option value="updatedAt">آخر تحديث</option>
+            </select>
+          </label>
+          <label>
+            <span>عرض</span>
+            <select id="viewSelect">
+              <option value="table">جدول</option>
+              <option value="cards">بطاقات</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="panel form-panel" id="subscriptionFormPanel" hidden>
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">بيانات الاشتراك</p>
+              <h2 id="formTitle">إضافة اشتراك</h2>
+            </div>
+            <button class="icon-button" type="button" id="closeFormButton" title="إغلاق" aria-label="إغلاق">×</button>
+          </div>
+
+          <form class="subscription-form" id="subscriptionForm">
+            <input type="hidden" name="id" />
+            <label>
+              <span>اسم الزبون <em>*</em></span>
+              <input name="customerName" type="text" required autocomplete="off" />
+            </label>
+            <label>
+              <span>رقم الخدمة / Kit <em>*</em></span>
+              <input name="serviceId" type="text" required autocomplete="off" />
+            </label>
+            <label>
+              <span>إيميل الزبون</span>
+              <input name="email" type="email" autocomplete="off" />
+            </label>
+            <label>
+              <span>الهاتف (واتساب)</span>
+              <input name="phone" type="tel" inputmode="tel" autocomplete="off" placeholder="091xxxxxxx" />
+            </label>
+            <label>
+              <span>المنطقة / المدينة</span>
+              <input name="city" type="text" autocomplete="off" />
+            </label>
+            <label>
+              <span>تاريخ الاستحقاق <em>*</em></span>
+              <input name="dueDate" type="date" required />
+            </label>
+            <label>
+              <span>دورة التجديد</span>
+              <select name="cycle">
+                <option value="monthly">شهري</option>
+                <option value="quarterly">ربع سنوي</option>
+                <option value="yearly">سنوي</option>
+                <option value="none">بدون تجديد تلقائي</option>
+              </select>
+            </label>
+            <label>
+              <span>المبلغ <em>*</em></span>
+              <input name="amount" type="number" min="0" step="0.01" required inputmode="decimal" />
+            </label>
+            <label>
+              <span>العملة</span>
+              <select name="currency">
+                <option value="LYD">دينار ليبي</option>
+                <option value="USD">دولار</option>
+                <option value="EUR">يورو</option>
+              </select>
+            </label>
+            <label>
+              <span>حالة الدفع</span>
+              <select name="paymentStatus">
+                <option value="unpaid">غير مدفوع</option>
+                <option value="paid">مدفوع</option>
+              </select>
+            </label>
+            <label>
+              <span>حالة الاشتراك</span>
+              <select name="subscriptionStatus">
+                <option value="active">نشط</option>
+                <option value="inactive">متوقف</option>
+              </select>
+            </label>
+            <label class="wide">
+              <span>ملاحظات</span>
+              <textarea name="notes" rows="3" placeholder="مثلاً: تم التواصل، ينتظر التحويل، رقم فاتورة ستارلينك..."></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">حفظ الاشتراك</button>
+              <button class="ghost-button" type="button" id="resetFormButton">تفريغ</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" id="subscriptions">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">جدول المتابعة</p>
+              <h2>الاشتراكات</h2>
+            </div>
+            <span class="result-count" id="resultCount">0 نتيجة</span>
+          </div>
+
+          <div class="table-wrap" id="tableView">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>الزبون</th>
+                  <th>رقم الخدمة</th>
+                  <th>الاستحقاق</th>
+                  <th>المبلغ</th>
+                  <th>الحالة</th>
+                  <th>آخر دفع</th>
+                  <th>إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="subscriptionsBody"></tbody>
+            </table>
+          </div>
+          <div class="cards-wrap" id="cardsView" hidden></div>
+        </section>
+
+        <section class="content-grid">
+          <section class="panel" id="emailImport">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">استيراد من رسالة</p>
+                <h2>تحويل إيميل الاستحقاق إلى اشتراك</h2>
+              </div>
+            </div>
+            <textarea id="emailText" rows="9" placeholder="الصق هنا نص رسالة ستارلينك (عربي أو إنجليزي). سيستخرج التطبيق التاريخ، المبلغ، الإيميل، ورقم الخدمة تلقائياً."></textarea>
+            <div class="form-actions">
+              <button class="primary-button" type="button" id="parseEmailButton">قراءة الإيميل</button>
+              <button class="ghost-button" type="button" id="clearEmailButton">مسح</button>
+            </div>
+            <div class="import-preview" id="importPreview" hidden></div>
+          </section>
+
+          <section class="panel" id="payments">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">آخر العمليات</p>
+                <h2>سجل الدفع والتعديلات</h2>
+              </div>
+              <button class="ghost-button" type="button" id="clearActivityButton" title="مسح السجل">مسح السجل</button>
+            </div>
+            <div class="activity-list" id="activityList"></div>
+          </section>
+        </section>
+
+        <section class="panel" id="settings">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">تخصيص</p>
+              <h2>الإعدادات</h2>
+            </div>
+          </div>
+          <form class="subscription-form" id="settingsForm">
+            <label>
+              <span>اسم الشركة / المزود</span>
+              <input name="businessName" type="text" placeholder="مثلاً: ستارلينك ليبيا" />
+            </label>
+            <label>
+              <span>العملة الافتراضية</span>
+              <select name="defaultCurrency">
+                <option value="LYD">دينار ليبي</option>
+                <option value="USD">دولار</option>
+                <option value="EUR">يورو</option>
+              </select>
+            </label>
+            <label>
+              <span>المبلغ الافتراضي</span>
+              <input name="defaultAmount" type="number" min="0" step="0.01" placeholder="450" />
+            </label>
+            <label>
+              <span>كود الدولة (واتساب)</span>
+              <input name="countryCode" type="text" placeholder="218" />
+            </label>
+            <label class="wide">
+              <span>قالب رسالة التذكير ({name}, {amount}, {dueDate}, {serviceId})</span>
+              <textarea name="reminderTemplate" rows="3"></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">حفظ الإعدادات</button>
+              <button class="ghost-button" type="button" id="resetSettingsButton">القيم الافتراضية</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
