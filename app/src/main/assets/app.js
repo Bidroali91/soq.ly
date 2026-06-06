@@ -1023,19 +1023,21 @@ function printVouchers(vouchers) {
    Bootstrap
    ============================================================ */
 function init() {
+  // Debug banner — confirms JS is alive
+  const tag = $(".brand .tag");
+  if (tag) tag.textContent = "إدارة شبكات MikroTik — JS ✓ Bridge " + (hasBridge ? "✓" : "✗");
+
   renderConnList();
-  // Auto-fill last connection
   try {
     const last = JSON.parse(localStorage.getItem(ACTIVE_CONN_KEY));
     if (last) fillForm(last);
   } catch {}
-  // Fire change to set port placeholder
   $("#version").dispatchEvent(new Event("change"));
-  // If no native bridge → show note
   if (!hasBridge) {
     const msg = $("#connect-msg");
     msg.className = "msg";
     msg.innerHTML = "⚠️ لا يوجد جسر أصلي — يجب تشغيل التطبيق من APK المُجمَّع، وليس من المتصفح.";
   }
 }
-init();
+window.addEventListener("DOMContentLoaded", init);
+if (document.readyState !== "loading") init();

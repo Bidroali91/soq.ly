@@ -24,7 +24,9 @@ body { background:
 }
 
 button { font: inherit; cursor: pointer; }
-input, select, textarea { font: inherit; }
+input, select, textarea { font: inherit; -webkit-user-select: text; user-select: text;
+  pointer-events: auto; }
+button, .nav-btn, .actions button { pointer-events: auto; -webkit-tap-highlight-color: rgba(34,211,238,0.3); }
 
 .screen { display: none; min-height: 100vh; }
 .screen.active { display: block; }
