@@ -2,6 +2,7 @@ package com.micronet.app
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MotionEvent
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var mikrotikBridge: MikroTikBridge
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
@@ -23,9 +24,20 @@ class MainActivity : AppCompatActivity() {
             settings.domStorageEnabled = true
             settings.allowFileAccess = false
             settings.allowContentAccess = false
+            settings.setNeedInitialFocus(true)
             settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             webViewClient = WebViewClient()
             setBackgroundColor(0xFF0D1B2A.toInt())
+            // Critical for input fields: ensure WebView accepts focus from touches
+            isFocusable = true
+            isFocusableInTouchMode = true
+            requestFocus()
+            setOnTouchListener { v, event ->
+                if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_UP) {
+                    if (!v.hasFocus()) v.requestFocus()
+                }
+                false
+            }
         }
 
         mikrotikBridge = MikroTikBridge(this, webView)
