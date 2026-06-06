@@ -1,2 +1,3 @@
 -keepattributes JavascriptInterface
--keep class com.sasaida.app.AndroidBridge { *; }
+-keep class com.micronet.app.MikroTikBridge { *; }
+-keep class com.micronet.app.PrintBridge { *; }

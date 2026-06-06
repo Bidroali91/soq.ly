@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-    <path
-        android:pathData="M0,0h108v108h-108z"
-        android:fillColor="#0B1020" />
-    <!-- subtle radial highlight -->
-    <path
-        android:pathData="M54,54 m-60,0 a60,60 0 1,0 120,0 a60,60 0 1,0 -120,0"
-        android:fillColor="#101A35" />
-    <path
-        android:pathData="M54,54 m-40,0 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0"
-        android:fillColor="#15213E" />
-    <!-- stars -->
-    <path android:pathData="M20,22 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
-    <path android:pathData="M86,28 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
-    <path android:pathData="M30,86 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
-    <path android:pathData="M84,82 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
-    <path android:pathData="M70,18 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
-    <path android:pathData="M18,68 l1,0 l0,1 l-1,0 z" android:fillColor="#F8FAFC" />
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M0,0h108v108h-108z" android:fillColor="#0D1B2A" />
+    <path android:pathData="M54,54 m-44,0 a44,44 0 1,0 88,0 a44,44 0 1,0 -88,0" android:fillColor="#11253B" />
+    <path android:pathData="M54,54 m-28,0 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0" android:fillColor="#15314E" />
 </vector>

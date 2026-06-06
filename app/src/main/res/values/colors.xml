@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="starlink_navy">#0B1020</color>
-    <color name="starlink_navy_dark">#060A18</color>
-    <color name="starlink_cyan">#22D3EE</color>
-    <color name="starlink_white">#F8FAFC</color>
+    <color name="mn_navy">#0D1B2A</color>
+    <color name="mn_navy_dark">#070F1A</color>
+    <color name="mn_cyan">#22D3EE</color>
+    <color name="mn_white">#F8FAFC</color>
 </resources>

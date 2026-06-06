@@ -1,52 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-    <!-- safe zone: 72x72 centered (18..90). Design a satellite dish with beams. -->
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
 
-    <!-- signal beam: three expanding arcs in cyan -->
+    <!-- Router body -->
     <path
-        android:pathData="M54,46 m-22,0 a22,22 0 0,1 44,0"
-        android:strokeColor="#22D3EE"
-        android:strokeWidth="2.2"
-        android:strokeLineCap="round"
-        android:fillColor="#00000000" />
-    <path
-        android:pathData="M54,46 m-15,0 a15,15 0 0,1 30,0"
-        android:strokeColor="#67E8F9"
-        android:strokeWidth="2"
-        android:strokeLineCap="round"
-        android:fillColor="#00000000" />
-    <path
-        android:pathData="M54,46 m-8,0 a8,8 0 0,1 16,0"
-        android:strokeColor="#A5F3FC"
-        android:strokeWidth="1.8"
-        android:strokeLineCap="round"
-        android:fillColor="#00000000" />
-
-    <!-- dish body (parabolic shape) -->
-    <path
-        android:pathData="M28,58 Q54,38 80,58 L74,64 Q54,50 34,64 Z"
+        android:pathData="M30,62 L78,62 L78,76 L30,76 Z"
         android:fillColor="#F8FAFC" />
-    <!-- dish inner shading -->
+    <!-- Router base shadow -->
     <path
-        android:pathData="M34,62 Q54,48 74,62 L70,66 Q54,55 38,66 Z"
+        android:pathData="M32,76 L76,76 L74,80 L34,80 Z"
         android:fillColor="#CBD5E1" />
+    <!-- LED indicators -->
+    <path android:pathData="M38,68 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0" android:fillColor="#22D3EE" />
+    <path android:pathData="M44,68 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0" android:fillColor="#34D399" />
+    <path android:pathData="M50,68 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0" android:fillColor="#FBBF24" />
 
-    <!-- mast -->
-    <path
-        android:pathData="M52,62 L56,62 L56,82 L52,82 Z"
-        android:fillColor="#F8FAFC" />
+    <!-- Two antennas -->
+    <path android:pathData="M36,62 L36,42" android:strokeColor="#F8FAFC" android:strokeWidth="3" android:strokeLineCap="round" />
+    <path android:pathData="M72,62 L72,42" android:strokeColor="#F8FAFC" android:strokeWidth="3" android:strokeLineCap="round" />
+    <path android:pathData="M36,42 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" android:fillColor="#22D3EE" />
+    <path android:pathData="M72,42 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" android:fillColor="#22D3EE" />
 
-    <!-- base -->
-    <path
-        android:pathData="M44,82 L64,82 L66,86 L42,86 Z"
-        android:fillColor="#F8FAFC" />
-
-    <!-- LNB receiver dot in front of dish -->
-    <path
-        android:pathData="M54,52 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
-        android:fillColor="#22D3EE" />
+    <!-- WiFi signal arcs above center -->
+    <path android:pathData="M54,34 m-10,0 a10,10 0 0,1 20,0"
+        android:strokeColor="#22D3EE" android:strokeWidth="2.4" android:fillColor="#00000000" android:strokeLineCap="round" />
+    <path android:pathData="M54,34 m-16,0 a16,16 0 0,1 32,0"
+        android:strokeColor="#67E8F9" android:strokeWidth="2" android:fillColor="#00000000" android:strokeLineCap="round" />
+    <path android:pathData="M54,34 m-22,0 a22,22 0 0,1 44,0"
+        android:strokeColor="#A5F3FC" android:strokeWidth="1.8" android:fillColor="#00000000" android:strokeLineCap="round" />
 </vector>
