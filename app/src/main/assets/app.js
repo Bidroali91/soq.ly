@@ -1027,19 +1027,6 @@ function init() {
   const tag = $(".brand .tag");
   if (tag) tag.textContent = "إدارة شبكات MikroTik — JS ✓ Bridge " + (hasBridge ? "✓" : "✗");
 
-  // Touch diagnostic — tap brand to confirm input works
-  const brand = $(".brand");
-  if (brand) {
-    let taps = 0;
-    const handler = () => {
-      taps++;
-      showToast("اللمس يعمل ✓ — اضغطات: " + taps);
-    };
-    brand.addEventListener("click", handler);
-    brand.addEventListener("touchstart", handler, { passive: true });
-    brand.style.cursor = "pointer";
-  }
-
   renderConnList();
   try {
     const last = JSON.parse(localStorage.getItem(ACTIVE_CONN_KEY));
